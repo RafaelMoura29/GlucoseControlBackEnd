@@ -1,19 +1,55 @@
 const mongoose = require("mongoose");
 
 const PacienteSchema = new mongoose.Schema({
-  Prontuario: {
+  prontuario: {
     type: String,
     required: false
   },
-  Nome: {
+  nome: {
     type: String,
     required: false
   },
-  Idade: {
+  dataNascimento: {
     type: String,
     required: false
   },
-  Sexo: {
+  tipoInternacao: {
+    type: String,
+    required: false
+  },
+  diabetes: {
+    type: String,
+    required: false
+  },
+  insuficienciaRenal: {
+    type: String,
+    required: false
+  },
+  corticoide: {
+    type: String,
+    required: false
+  },
+  infeccao: {
+    type: String,
+    required: false
+  },
+  sepse: {
+    type: String,
+    required: false
+  },
+  sindromeDesconfortoRespiratorio: {
+    type: String,
+    required: false
+  },
+  sexo: {
+    type: String,
+    required: false
+  },
+  dataHoraInternacao: {
+    type: String,
+    required: false
+  },
+  observacoes: {
     type: String,
     required: false
   },
