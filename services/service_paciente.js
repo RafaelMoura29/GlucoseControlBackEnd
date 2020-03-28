@@ -8,7 +8,11 @@ module.exports = {
         res.send({passed: paciente,});
     },
     async list_paciente(req, res) {
+        if(req.query.tagId){
+            const paciente = await Paciente.find({"_id":req.query.tagId});
+            return res.send({paciente}); 
+        }
         const paciente = await Paciente.find();
-        res.send({passed: paciente,});
+        return res.send({paciente});
     },
 }
