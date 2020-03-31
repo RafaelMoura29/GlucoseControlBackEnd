@@ -37,6 +37,10 @@ const GlucoseSchema = new mongoose.Schema({
     type: String,
     required: false
   },
+  _idPaciente:{
+    type: String,
+    required: false
+  }
 },
   { collection: 'Glucose' }
 );
