@@ -52,6 +52,10 @@ const PacienteSchema = new mongoose.Schema({
   observacoes: {
     type: String,
     required: false
+  },
+  estadoPaciente: {
+    type: String,
+    required: false
   }
 },
   { collection: 'Pacientes' }
