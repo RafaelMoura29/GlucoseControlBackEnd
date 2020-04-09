@@ -3,7 +3,8 @@ const mongoose = require("mongoose");
 const PacienteSchema = new mongoose.Schema({
   prontuario: {
     type: String,
-    required: false
+    required: false,
+    index: {unique: true, dropDups: true}
   },
   nome: {
     type: String,
@@ -54,6 +55,10 @@ const PacienteSchema = new mongoose.Schema({
     required: false
   },
   estadoPaciente: {
+    type: String,
+    required: false
+  },
+  planoAplicacao: {
     type: String,
     required: false
   }
