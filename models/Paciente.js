@@ -4,7 +4,6 @@ const PacienteSchema = new mongoose.Schema({
   prontuario: {
     type: String,
     required: false,
-    index: {unique: true, dropDups: true}
   },
   nome: {
     type: String,
@@ -61,9 +60,13 @@ const PacienteSchema = new mongoose.Schema({
   planoAplicacao: {
     type: String,
     required: false
+  },
+  createdAt: {
+    type: Date,
+    required: false
   }
 },
-  { collection: 'Pacientes' }
+  { collection: 'Paciente' }
 );
 
 mongoose.model("Paciente", PacienteSchema);
