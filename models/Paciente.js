@@ -62,11 +62,11 @@ const PacienteSchema = new mongoose.Schema({
     required: false
   },
   createDate: {
-    type: Date,
+    type: String,
     required: false
   },
   updateDate: {
-    type: Date,
+    type: String,
     required: false
   },
 },
