@@ -61,10 +61,14 @@ const PacienteSchema = new mongoose.Schema({
     type: String,
     required: false
   },
-  createdAt: {
+  createDate: {
     type: Date,
     required: false
-  }
+  },
+  updateDate: {
+    type: Date,
+    required: false
+  },
 },
   { collection: 'Paciente' }
 );
