@@ -9,7 +9,7 @@ module.exports = {
     },
     async list_glucose(req, res) {
         if (req.query.tagId) {
-            const glucose = await Glucose.find({ "_id": req.query.tagId });
+            const glucose = await Glucose.find({ "_idPaciente": req.query.tagId });
             return res.send({ glucose });
         }
         const glucose = await Glucose.find();
