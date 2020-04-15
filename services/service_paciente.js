@@ -16,7 +16,7 @@ module.exports = {
         return res.send({ paciente });
     },
     async update_paciente(req, res) {
-        paciente = await Paciente.findOneAndUpdate(req.body._id,req.body.dataUpdated)
+        paciente = await Paciente.findOneAndUpdate({"_id":req.body._id},req.body.dataUpdated)
         return res.send({ paciente });
     }
 }
