@@ -5,6 +5,7 @@ const routes = express.Router();
 const paciente = require('./services/service_paciente')
 routes.post('/paciente', paciente.create_paciente);
 routes.get('/paciente', paciente.list_paciente);
+routes.put('/paciente', paciente.update_paciente);
 
 /* Glucose */
 const glucose = require('./services/service_glucose')
