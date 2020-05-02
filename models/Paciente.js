@@ -69,6 +69,14 @@ const PacienteSchema = new mongoose.Schema({
     type: String,
     required: false
   },
+  peso: {
+    type: String,
+    required: false
+  },
+  altura: {
+    type: String,
+    required: false
+  }
 },
   { collection: 'Paciente' }
 );
