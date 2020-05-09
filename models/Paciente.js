@@ -33,10 +33,6 @@ const PacienteSchema = new mongoose.Schema({
     type: String,
     required: false
   },
-  sepse: {
-    type: String,
-    required: false
-  },
   sindromeDesconfortoRespiratorio: {
     type: String,
     required: false
@@ -74,6 +70,10 @@ const PacienteSchema = new mongoose.Schema({
     required: false
   },
   altura: {
+    type: String,
+    required: false
+  },
+  instabilidadeHemodinamica: {
     type: String,
     required: false
   }
