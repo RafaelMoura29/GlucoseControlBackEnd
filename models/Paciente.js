@@ -76,6 +76,10 @@ const PacienteSchema = new mongoose.Schema({
   instabilidadeHemodinamica: {
     type: String,
     required: false
+  },
+  imc: {
+    type: String,
+    required: false
   }
 },
   { collection: 'Paciente' }
