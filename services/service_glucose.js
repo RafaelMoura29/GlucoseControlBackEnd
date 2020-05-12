@@ -3,16 +3,23 @@ const mongoose = require("mongoose");
 const Glucose = mongoose.model("Glucose");
 
 module.exports = {
-    async create_glucose(req, res) {
-        const glucose = await Glucose.create(req.body);
-        res.send({ glucose });
-    },
-    async list_glucose(req, res) {
-        if (req.query.tagId) {
-            const glucose = await Glucose.find({ "_idPaciente": req.query.tagId });
-            return res.send({ glucose });
-        }
-        const glucose = await Glucose.find();
+  create_glucose(req, res) {
+    Glucose.create(req.body)
+      .then((glucose) => {
+        return res.send({ glucose })
+      })
+      .catch((error) => {
+        return res.send({ error })
+      })
+  },
+
+  list_glucose(req, res) {
+    Glucose.find(req.query.tagId ? { "_idPaciente": req.query.tagId } : {})
+      .then((glucose) => {
         return res.send({ glucose });
-    },
+      })
+      .catch((error) => {
+        return res.send({ error })
+      })
+  },
 }

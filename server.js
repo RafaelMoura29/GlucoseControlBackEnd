@@ -14,7 +14,10 @@ app.use(cors());
 mongoose.connect("mongodb+srv://usuario:usuario@mongodbblackbook-zdqhv.azure.mongodb.net/GlucoseControl?retryWrites=true&w=majority", {
   useNewUrlParser: true, 
   useUnifiedTopology: true
-});
+})
+  .catch((error) => {
+    console.log(error)
+  })
 
 requireDir("./models");
 app.use( require("./routes"));
