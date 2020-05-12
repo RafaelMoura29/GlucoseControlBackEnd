@@ -6,7 +6,7 @@ module.exports = {
     create_aplicacao(req, res) {
         Aplicacao.create(req.body)
             .then((aplicacao) => {
-                res.send({ aplicacao })
+                return res.send({ aplicacao })
             })
     },
 
@@ -14,12 +14,12 @@ module.exports = {
         if (req.query.tagId) {
             Aplicacao.find({ "_idPaciente": req.query.tagId })
                 .then((aplicacoes) => {
-                    res.send({ aplicacoes })
+                    return res.send({ aplicacoes })
                 })
         }
         Aplicacao.find()
             .then((aplicacoes) => {
-                res.send({ aplicacoes })
+                return res.send({ aplicacoes })
             })
     }
 }
