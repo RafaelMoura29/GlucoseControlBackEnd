@@ -13,6 +13,30 @@ const PacienteSchema = new mongoose.Schema({
     type: String,
     required: false
   },
+  sexo: {
+    type: String,
+    required: false
+  },
+  peso: {
+    type: String,
+    required: false
+  },
+  altura: {
+    type: String,
+    required: false
+  },
+  imc: {
+    type: String,
+    required: false
+  }
+  dataInternacao: {
+    type: String,
+    required: false
+  },
+  horaInternacao: {
+    type: String,
+    required: false
+  },
   tipoInternacao: {
     type: String,
     required: false
@@ -33,27 +57,23 @@ const PacienteSchema = new mongoose.Schema({
     type: String,
     required: false
   },
-  sindromeDesconfortoRespiratorio: {
+  sindromeDescRespiratorio: {
     type: String,
     required: false
   },
-  sexo: {
+  instabilidadeHemodinamica: {
     type: String,
     required: false
   },
-  dataHoraInternacao: {
-    type: String,
-    required: false
-  },
-  observacoes: {
-    type: String,
-    required: false
-  },
-  estadoPaciente: {
+  statusPaciente: {
     type: String,
     required: false
   },
   planoAplicacao: {
+    type: String,
+    required: false
+  },
+  observacoes: {
     type: String,
     required: false
   },
@@ -64,23 +84,7 @@ const PacienteSchema = new mongoose.Schema({
   updateDate: {
     type: String,
     required: false
-  },
-  peso: {
-    type: String,
-    required: false
-  },
-  altura: {
-    type: String,
-    required: false
-  },
-  instabilidadeHemodinamica: {
-    type: String,
-    required: false
-  },
-  imc: {
-    type: String,
-    required: false
-  }
+  }, 
 },
   { collection: 'Paciente' }
 );
