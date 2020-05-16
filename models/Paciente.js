@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const Glucose = mongoose.model("Glucose");
 
 const PacienteSchema = new mongoose.Schema({
   prontuario: {

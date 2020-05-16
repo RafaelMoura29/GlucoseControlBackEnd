@@ -17,4 +17,29 @@ const aplicacao = require('./services/service_aplicacao')
 routes.post('/aplicacao', aplicacao.create_aplicacao)
 routes.get('/aplicacao', aplicacao.list_aplicacao)
 
-module.exports = routes;
+const mongoose = require("mongoose");
+const Paciente = mongoose.model("Paciente");
+routes.get('/aplicacaoGlucoseAndUserData', (req, res) => {
+    console.log('agregate')
+    Paciente.aggregate([{
+        $group: Paciente
+    }, {
+        $lookup: {
+            from: "Glucose", // collection to join
+            localField: "_id",//field from the input documents
+            foreignField: "_idPaciente",//field from the documents of the "from" collection
+            as: "comments"// output array field
+        }
+    }, {
+        $lookup: {
+            from: "Aplicacao", // from collection name
+            localField: "_id",
+            foreignField: "_idPaciente",
+            as: "posts"
+        }
+    }], (error, data) => {
+        console.log('end')
+        return res.send({error, data})
+    })
+})
+    module.exports = routes;
