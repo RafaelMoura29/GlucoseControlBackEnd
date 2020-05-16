@@ -1,25 +1,16 @@
 const mongoose = require("mongoose");
-
-const Glucose = mongoose.model("Glucose");
+const Paciente = mongoose.model("Paciente");
 
 module.exports = {
   create_glucose(req, res) {
-    Glucose.create(req.body)
-      .then((glucose) => {
-        return res.send({ glucose })
+    const { _idPaciente, ...glucose } = req.body
+    Paciente.findOne({ _id: String(_idPaciente) })
+      .then((paciente) => {
+        paciente.glucose.push(glucose)
+        paciente.save()
+          .then((response) => res.send(response.glucose))
+          .catch((error) => res.send("Ocorreu um erro ao tentar salvar o paciente"))
       })
-      .catch((error) => {
-        return res.send({ error })
-      })
-  },
-
-  list_glucose(req, res) {
-    Glucose.find(req.query.tagId ? { "_idPaciente": req.query.tagId } : {})
-      .then((glucose) => {
-        return res.send({ glucose });
-      })
-      .catch((error) => {
-        return res.send({ error })
-      })
+      .catch((error) => res.send("Paciente não encontrado"))
   },
 }

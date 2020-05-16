@@ -1,5 +1,70 @@
 const mongoose = require("mongoose");
-const Glucose = mongoose.model("Glucose");
+
+const GlucoseSchema = {
+  dataColeta: {
+    type: String,
+    required: false
+  },
+  horaColeta: {
+    type: String,
+    required: false
+  },
+  tipoColeta: {
+    type: String,
+    required: false
+  },
+  tipoAlimentacao: {
+    type: String,
+    required: false
+  },
+  valorGlicemia: {
+    type: String,
+    required: false
+  },
+  observacoes: {
+    type: String,
+    required: false
+  },
+  createDate: {
+    type: String,
+    required: false
+  }
+}
+
+const AplicacaoSchema = {
+  dataAplicacao: {
+    type: String,
+    required: false
+  },
+  horaAplicacao: {
+    type: String,
+    required: false
+  },
+  tipoAplicacao: {
+    type: String,
+    required: false
+  },
+  viaAdministracao: {
+    type: String,
+    required: false
+  },
+  droga: {
+    type: String,
+    required: false
+  },
+  posologia: {
+    type: String,
+    required: false
+  },
+  observacoes: {
+    type: String,
+    required: false
+  },
+  createDate: {
+    type: String,
+    required: false
+  }
+}
 
 const PacienteSchema = new mongoose.Schema({
   prontuario: {
@@ -29,7 +94,7 @@ const PacienteSchema = new mongoose.Schema({
   imc: {
     type: String,
     required: false
-  }
+  },
   dataInternacao: {
     type: String,
     required: false
@@ -85,7 +150,9 @@ const PacienteSchema = new mongoose.Schema({
   updateDate: {
     type: String,
     required: false
-  }, 
+  },
+  glucose: [GlucoseSchema],
+  aplicacao: [AplicacaoSchema]
 },
   { collection: 'Paciente' }
 );

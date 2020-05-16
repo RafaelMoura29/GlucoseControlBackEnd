@@ -1,22 +1,17 @@
 const mongoose = require("mongoose")
 
-const Aplicacao = mongoose.model("Aplicacao")
+const Paciente = mongoose.model("Paciente");
 
 module.exports = {
   create_aplicacao(req, res) {
-    Aplicacao.create(req.body)
-      .then((aplicacao) => {
-        return res.send({ aplicacao })
+    const {_idPaciente, ...aplicacao } = req.body
+    Paciente.findOne({ _id: String(_idPaciente)})
+      .then((paciente) => {
+        paciente.aplicacao.push(aplicacao)
+        paciente.save()
+          .then((response) => res.send(response.aplicacao))
+          .catch((error) => res.send('Ocorreu um error ao tentar salvar a nova aplicação'))
       })
+      .catch((error) => res.send('Ocorreu um error ao tentar encontrar o paciente'))
   },
-
-  list_aplicacao(req, res) {
-    Aplicacao.find(req.query.tagId ? { "_idPaciente": req.query.tagId } : {})
-      .then((aplicacoes) => {
-        return res.send({ aplicacoes })
-      })
-      .catch((error) => {
-        return res.send({ error })
-      })
-  }
 }
