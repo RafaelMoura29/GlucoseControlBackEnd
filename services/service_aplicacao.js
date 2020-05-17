@@ -10,8 +10,8 @@ module.exports = {
         paciente.aplicacao.push(aplicacao)
         paciente.save()
           .then((response) => res.send(response.aplicacao))
-          .catch((error) => res.send('Ocorreu um error ao tentar salvar a nova aplicação'))
+          .catch((error) => res.send('Ocorreu um error ao salvar a nova aplicação'))
       })
-      .catch((error) => res.send('Ocorreu um error ao tentar encontrar o paciente'))
+      .catch((error) => res.send('Ocorreu um error ao encontrar o paciente'))
   },
 }

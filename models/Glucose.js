@@ -1,48 +1,34 @@
-const mongoose = require("mongoose");
-
-const GlucoseSchema = new mongoose.Schema({
-  prontuario: {
-    type: String,
-    required: false
-  },
-  paciente: {
-    type: String,
-    required: false
-  },
+const GlucoseSchema = {
   dataColeta: {
     type: String,
-    required: false
-  },
-  valorGlicemia: {
-    type: String,
-    required: false
-  },
-  tipo: {
-    type: String,
-    required: false
-  },
-  tipoAlimentacao: {
-    type: String,
-    required: false
-  },
-  hora: {
-    type: String,
-    required: false
+    required: true
   },
   horaColeta: {
     type: String,
-    required: false
+    required: true
+  },
+  tipoColeta: {
+    type: String,
+    required: true
+  },
+  tipoAlimentacao: {
+    type: String,
+    required: true
+  },
+  valorGlicemia: {
+    type: String,
+    required: true
   },
   observacoes: {
     type: String,
-    required: false
+    required: true
   },
-  _idPaciente:{
+  createDate: {
     type: String,
-    required: false
+    required: true
+  },
+  updateDate: {
+    type: String,
+    required: true
   }
-},
-  { collection: 'Glucose' }
-);
-
-mongoose.model("Glucose", GlucoseSchema);
+}

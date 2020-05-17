@@ -9,8 +9,8 @@ module.exports = {
         paciente.glucose.push(glucose)
         paciente.save()
           .then((response) => res.send(response.glucose))
-          .catch((error) => res.send("Ocorreu um erro ao tentar salvar o paciente"))
+          .catch((error) => res.send(error))
       })
-      .catch((error) => res.send("Paciente não encontrado"))
+      .catch((error) => res.send(error))
   },
 }

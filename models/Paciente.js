@@ -1,155 +1,130 @@
 const mongoose = require("mongoose");
 
-const GlucoseSchema = {
-  dataColeta: {
-    type: String,
-    required: false
-  },
-  horaColeta: {
-    type: String,
-    required: false
-  },
-  tipoColeta: {
-    type: String,
-    required: false
-  },
-  tipoAlimentacao: {
-    type: String,
-    required: false
-  },
-  valorGlicemia: {
-    type: String,
-    required: false
-  },
-  observacoes: {
-    type: String,
-    required: false
-  },
-  createDate: {
-    type: String,
-    required: false
-  }
-}
+const GlucoseSchema = require('./Glucose')
 
 const AplicacaoSchema = {
   dataAplicacao: {
     type: String,
-    required: false
+    required: true
   },
   horaAplicacao: {
     type: String,
-    required: false
+    required: true
   },
   tipoAplicacao: {
     type: String,
-    required: false
+    required: true
   },
   viaAdministracao: {
     type: String,
-    required: false
+    required: true
   },
   droga: {
     type: String,
-    required: false
+    required: true
   },
   posologia: {
     type: String,
-    required: false
+    required: true
   },
   observacoes: {
     type: String,
-    required: false
+    required: true
   },
   createDate: {
     type: String,
-    required: false
+    required: true
+  },
+  updateDate: {
+    type: String,
+    required: true
   }
 }
 
 const PacienteSchema = new mongoose.Schema({
   prontuario: {
     type: String,
-    required: false,
+    required: true,
   },
   nome: {
     type: String,
-    required: false
+    required: true
   },
   dataNascimento: {
     type: String,
-    required: false
+    required: true
   },
   sexo: {
     type: String,
-    required: false
+    required: true
   },
   peso: {
     type: String,
-    required: false
+    required: true
   },
   altura: {
     type: String,
-    required: false
+    required: true
   },
   imc: {
     type: String,
-    required: false
+    required: true
   },
   dataInternacao: {
     type: String,
-    required: false
+    required: true
   },
   horaInternacao: {
     type: String,
-    required: false
+    required: true
   },
   tipoInternacao: {
     type: String,
-    required: false
+    required: true
   },
   diabetes: {
     type: String,
-    required: false
+    required: true
   },
   insuficienciaRenal: {
     type: String,
-    required: false
+    required: true
   },
   corticoide: {
     type: String,
-    required: false
+    required: true
   },
   infeccao: {
     type: String,
-    required: false
+    required: true
   },
   sindromeDescRespiratorio: {
     type: String,
-    required: false
+    required: true
   },
   instabilidadeHemodinamica: {
     type: String,
-    required: false
+    required: true
   },
   statusPaciente: {
     type: String,
-    required: false
+    required: true
   },
   planoAplicacao: {
     type: String,
-    required: false
+    required: true
   },
   observacoes: {
     type: String,
-    required: false
+    required: true
   },
   createDate: {
     type: String,
-    required: false
+    required: true
   },
   updateDate: {
     type: String,
-    required: false
+    required: true
   },
   glucose: [GlucoseSchema],
   aplicacao: [AplicacaoSchema]
