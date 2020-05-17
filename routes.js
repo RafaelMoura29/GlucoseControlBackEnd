@@ -15,7 +15,8 @@ routes.post('/glucose', glucose.create_glucose);
 const aplicacao = require('./services/service_aplicacao')
 routes.post('/aplicacao', aplicacao.create_aplicacao)
 
-const info = require('./services/service_info')
-routes.get('/', info.infoGlycon);
+routes.get('/', (req, res) => {
+    res.sendFile('./views/index.html')
+});
 
 module.exports = routes;
