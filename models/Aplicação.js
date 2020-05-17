@@ -1,48 +1,38 @@
-const mongoose = require("mongoose")
-
-const AplicacaoSchema = new mongoose.Schema({
+const AplicacaoSchema = {
   dataAplicacao: {
     type: String,
-    required: false
+    required: true
   },
   horaAplicacao: {
     type: String,
-    required: false
+    required: true
   },
   tipoAplicacao: {
     type: String,
-    required: false
+    required: true
   },
   viaAdministracao: {
     type: String,
-    required: false
+    required: true
   },
   droga: {
     type: String,
-    required: false
+    required: true
   },
   posologia: {
     type: String,
-    required: false
+    required: true
   },
   observacoes: {
     type: String,
-    required: false
+    required: true
   },
   createDate: {
     type: String,
-    required: false
+    required: true
   },
   updateDate: {
     type: String,
-    required: false
-  },
-  _idPaciente: {
-    type: String,
-    required: false
-  },
-},
-  { collection: 'Aplicacao' }
-)
-
-mongoose.model("Aplicacao", AplicacaoSchema)
+    required: true
+  }
+}
