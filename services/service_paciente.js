@@ -3,20 +3,11 @@ const mongoose = require("mongoose");
 const Paciente = mongoose.model("Paciente");
 
 module.exports = {
-  async create_paciente(req, res) {
+  create_paciente(req, res) {
     let novoPaciente = new Paciente(req.body)
-    response = await novoPaciente.save()
-    res.send(response)
-
-
-
-    /* Paciente.create(req.body)
-      .then((paciente) => {
-        return res.send({ paciente });
-      })
-      .catch((error) => {
-        return res.send({ error })
-      }) */
+    novoPaciente.save()
+      .then((paciente) => res.send(paciente))
+      .catch((error) => error)
   },
 
   list_paciente(req, res) {
