@@ -7,16 +7,16 @@ routes.post('/paciente', paciente.create_paciente);
 routes.get('/paciente', paciente.list_paciente);
 routes.put('/paciente', paciente.update_paciente);
 
-/* Glucose */
-const glucose = require('./services/service_glucose')
-routes.post('/glucose', glucose.create_glucose);
+/* glicemia */
+const glicemia = require('./services/service_glicemia')
+routes.post('/glicemia', glicemia.create_glicemia);
 
 /* Aplicação */
 const aplicacao = require('./services/service_aplicacao')
 routes.post('/aplicacao', aplicacao.create_aplicacao)
 
 routes.get('/', (req, res) => {
-    res.sendFile('./views/index.html')
+    res.sendfile('./views/index.html')
 });
 
 module.exports = routes;

@@ -1,4 +1,4 @@
-const GlucoseSchema = {
+const GlicemiaSchema = {
   dataColeta: {
     type: String,
     required: true

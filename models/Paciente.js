@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const GlucoseSchema = require('./Glucose')
+const GlicemiaSchema = require('./Glicemia')
 const AplicacaoSchema = require('./Aplicação')
 
 const PacienteSchema = new mongoose.Schema({
@@ -87,7 +87,7 @@ const PacienteSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  glucose: [GlucoseSchema],
+  glicemia: [GlicemiaSchema],
   aplicacao: [AplicacaoSchema]
 },
   { collection: 'Paciente' }
