@@ -1,5 +1,4 @@
 const mongoose = require("mongoose")
-
 const Paciente = mongoose.model("Paciente");
 
 module.exports = {
