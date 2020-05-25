@@ -77,7 +77,7 @@ const PacienteSchema = new mongoose.Schema({
   },
   observacoes: {
     type: String,
-    required: true
+    required: false
   },
   createDate: {
     type: String,

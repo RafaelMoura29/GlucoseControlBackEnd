@@ -21,7 +21,7 @@ const GlicemiaSchema = {
   },
   observacoes: {
     type: String,
-    required: true
+    required: false
   },
   createDate: {
     type: String,

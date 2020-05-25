@@ -6,7 +6,7 @@ module.exports = {
     let novoPaciente = new Paciente(req.body)
     novoPaciente.save()
       .then((paciente) => res.send(paciente))
-      .catch((error) => error)
+      .catch((error) => res.send({error}))
   },
 
   list_paciente(req, res) {
