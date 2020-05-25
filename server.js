@@ -8,11 +8,8 @@ const app = express()
 
 // permitir receber JSON nas requisições
 app.use(express.json())
-app.use(cors({
-  origin: "*",
-  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-}))
-
+app.use(cors())
+app.options('*', cors())
 // Iniciando o DB
 mongoose.connect("mongodb://usuario:usuario@mongodbblackbook-shard-00-00-zdqhv.azure.mongodb.net:27017,mongodbblackbook-shard-00-01-zdqhv.azure.mongodb.net:27017,mongodbblackbook-shard-00-02-zdqhv.azure.mongodb.net:27017/test?ssl=true&replicaSet=MongoDbBlackBook-shard-0&authSource=admin&retryWrites=true&w=majority", {
   useNewUrlParser: true, 
