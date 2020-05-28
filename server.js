@@ -11,7 +11,7 @@ app.use(express.json())
 app.use(cors())
 
 // Iniciando o DB
-mongoose.connect(process.env.API, {
+mongoose.connect(process.env.ULR_MONGO, {
   useNewUrlParser: true, 
   useUnifiedTopology: true
 })
