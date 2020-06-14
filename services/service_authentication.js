@@ -1,5 +1,6 @@
 const mongoose = require("mongoose")
 const Usuario = mongoose.model('Usuario')
+const bcrypt = require('bcrypt')
 //const format = /[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/
 
 module.exports = {
@@ -13,11 +14,9 @@ module.exports = {
     } else if (username.length <= 8) {
       return res.status(406).send("Username length is not accepted")
     }
-    /* else if (format.test(password)) {
-      return res.status(406).send("Password does not accept special characters.")
-    }  */
 
-    const newUser = new Usuario({ username, password })
+    const cyptedPassword = bcrypt.hashSync(password, 8)
+    const newUser = new Usuario({ username, password: cyptedPassword })
 
     newUser.save()
       .then((response) => {
