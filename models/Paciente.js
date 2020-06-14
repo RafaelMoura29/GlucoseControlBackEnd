@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require("mongoose")
 const GlicemiaSchema = require('./Glicemia')
 const AplicacaoSchema = require('./Aplicação')
 
