@@ -93,4 +93,4 @@ const PacienteSchema = new mongoose.Schema({
   { collection: 'Paciente' }
 );
 
-mongoose.model("Paciente", PacienteSchema);
+mongoose.model("Paciente", PacienteSchema)
