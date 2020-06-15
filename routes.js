@@ -17,6 +17,7 @@ routes.post('/aplicacao', aplicacao.create_aplicacao)
 
 const usuario = require('./services/service_authentication')
 routes.post('/register', usuario.register)
+routes.post('/login', usuario.login)
 
 routes.get('/', (req, res) => {
     res.sendfile('./views/index.html')

@@ -1,6 +1,7 @@
 const mongoose = require("mongoose")
 const Usuario = mongoose.model('Usuario')
 const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
 //const format = /[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/
 
 module.exports = {
@@ -30,6 +31,24 @@ module.exports = {
       .catch((error) => {
         return res.status(400).send(error)
       })
+  },
+
+  async login(req, res) {
+    const { username, password } = req.body
+
+    const user = await Usuario.find({ username })
+    if (user.length <= 0) {
+      return res.status(406).send("Username is not registered.")
+    }
+
+    const doesPasswordMatch = await bcrypt.compare(password, user[0].password);
+    if(!doesPasswordMatch){
+      return res.status(406).send("The password does not match.")
+    }
+
+    var token = jwt.sign({ userId: user[0]._id }, process.env.KEY);
+
+    return res.status(201).send({isUserAuthenticated: true,  token})
   }
-  
+
 }
