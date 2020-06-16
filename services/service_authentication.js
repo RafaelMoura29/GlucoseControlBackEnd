@@ -42,13 +42,28 @@ module.exports = {
     }
 
     const doesPasswordMatch = await bcrypt.compare(password, user[0].password);
-    if(!doesPasswordMatch){
+    if (!doesPasswordMatch) {
       return res.status(406).send("The password does not match.")
     }
 
     var token = jwt.sign({ userId: user[0]._id }, process.env.KEY);
 
-    return res.status(201).send({isUserAuthenticated: true,  token})
+    return res.status(201).send({ isUserAuthenticated: true, token })
+  },
+
+  async checkToken(req, res, next) {
+    const { token } = req.headers
+
+    if (!token) {
+      return res.status(401).send({ auth: false, message: 'No token provided.' })
+    }
+
+    jwt.verify(token, process.env.KEY, (err, decoded) => {
+      if (err) {
+        return res.status(500).send({ auth: false, message: 'Failed to authenticate token.' })
+      }
+      next()
+    })
   }
 
 }
