@@ -6,7 +6,7 @@ const jwt = require('jsonwebtoken')
 
 module.exports = {
   async register(req, res) {
-    const { password, confirmPassword, username } = req.body
+    const { email, password, confirmPassword, username } = req.body
 
     if (password !== confirmPassword) {
       return res.status(406).send("Password and confirm password are not equal.")
@@ -16,13 +16,17 @@ module.exports = {
       return res.status(406).send("Username length is not accepted")
     }
 
-    const doesUserExist = await Usuario.find({ username })
+    const doesUserExist = await Usuario.find({ $or: [{ email }, { username }] })
     if (doesUserExist.length > 0) {
-      return res.status(406).send("The username is already being used.")
+      if (doesUserExist[0].email === email) {
+        return res.status(406).send("The e-mail is already being used.")
+      } else {
+        return res.status(406).send("The username is already being used.")
+      }
     }
 
     const cyptedPassword = bcrypt.hashSync(password, 8)
-    const newUser = new Usuario({ username, password: cyptedPassword })
+    const newUser = new Usuario({ email, username, password: cyptedPassword })
 
     newUser.save()
       .then((response) => {
@@ -34,11 +38,11 @@ module.exports = {
   },
 
   async login(req, res) {
-    const { username, password } = req.body
+    const { email, password } = req.body
 
-    const user = await Usuario.find({ username })
+    const user = await Usuario.find({ email })
     if (user.length <= 0) {
-      return res.status(406).send("Username is not registered.")
+      return res.status(406).send("email is not registered.")
     }
 
     const doesPasswordMatch = await bcrypt.compare(password, user[0].password);
