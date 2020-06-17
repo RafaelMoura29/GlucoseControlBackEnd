@@ -2,6 +2,7 @@ const mongoose = require("mongoose")
 const Usuario = mongoose.model('Usuario')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
+const nodemailer = require('nodemailer')
 //const format = /[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/
 
 module.exports = {
@@ -67,6 +68,31 @@ module.exports = {
         return res.status(500).send({ auth: false, message: 'Failed to authenticate token.' })
       }
       next()
+    })
+  },
+
+  async recoverPassword(req, res) {
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: 'glycon4@gmail.com',
+        pass: 'glyconEmail123'
+      }
+    })
+
+    const mailOptions = {
+      from: 'glycon4@gmail.com',
+      to: req.body.email,
+      subject: 'Testando suporte glycon',
+      text: 'Funcionou!'
+    }
+
+    transporter.sendMail(mailOptions, function (error, info) {
+      if (error) {
+        return res.status(201).send({ error })
+      } else {
+        return res.status(201).send({ info })
+      }
     })
   }
 
