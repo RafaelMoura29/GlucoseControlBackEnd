@@ -5,13 +5,29 @@ const UsuarioSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  username: {
+  nome: {
     type: String,
     required: true
   },
-  password: {
+  senha: {
     type: String,
     required: true
+  },
+  unidade: {
+    type: String,
+    required: true
+  },
+  perfil: {
+    type: String,
+    required: true
+  },
+  createDate: {
+    type: Date,
+    default: Date.now
+  },
+  updateDate: {
+    type: Date,
+    default: Date.now
   }
 })
 

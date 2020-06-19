@@ -7,27 +7,19 @@ const nodemailer = require('nodemailer')
 
 module.exports = {
   async register(req, res) {
-    const { email, password, confirmPassword, username } = req.body
+    const { email, nome, senha, unidade, perfil } = req.body
 
-    if (password !== confirmPassword) {
-      return res.status(406).send("Password and confirm password are not equal.")
-    } else if (password.length <= 8) {
+    if (senha.length <= 8) {
       return res.status(406).send("Password length is not accepted.")
-    } else if (username.length <= 8) {
-      return res.status(406).send("Username length is not accepted")
     }
 
-    const doesUserExist = await Usuario.find({ $or: [{ email }, { username }] })
+    const doesUserExist = await Usuario.find({ email })
     if (doesUserExist.length > 0) {
-      if (doesUserExist[0].email === email) {
-        return res.status(406).send("The e-mail is already being used.")
-      } else {
-        return res.status(406).send("The username is already being used.")
-      }
+      return res.status(406).send("O e-mail já está sendo utilizado")
     }
 
-    const cyptedPassword = bcrypt.hashSync(password, 8)
-    const newUser = new Usuario({ email, username, password: cyptedPassword })
+    const cyptedPassword = bcrypt.hashSync(senha, 8)
+    const newUser = new Usuario({ email, nome, senha: cyptedPassword, unidade, perfil })
 
     newUser.save()
       .then((response) => {
@@ -39,16 +31,16 @@ module.exports = {
   },
 
   async login(req, res) {
-    const { email, password } = req.body
+    const { email, senha } = req.body
 
     const user = await Usuario.find({ email })
     if (user.length <= 0) {
-      return res.status(406).send("email is not registered.")
+      return res.status(406).send("E-mail e ou senha inválidos")
     }
 
-    const doesPasswordMatch = await bcrypt.compare(password, user[0].password);
+    const doesPasswordMatch = await bcrypt.compare(senha, user[0].senha);
     if (!doesPasswordMatch) {
-      return res.status(406).send("The password does not match.")
+      return res.status(406).send("E-mail e ou senha inválidos")
     }
 
     var token = jwt.sign({ userId: user[0]._id }, process.env.KEY);

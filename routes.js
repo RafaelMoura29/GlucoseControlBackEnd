@@ -7,15 +7,15 @@ const aplicacao = require('./services/service_aplicacao')
 const usuario = require('./services/service_authentication')
 
 /* Paciente  */
-routes.post('/paciente', paciente.create_paciente)
-routes.get('/paciente', paciente.list_paciente)
-routes.put('/paciente', paciente.update_paciente)
+routes.post('/paciente', usuario.checkToken, paciente.create_paciente)
+routes.get('/paciente', usuario.checkToken, paciente.list_paciente)
+routes.put('/paciente', usuario.checkToken, paciente.update_paciente)
 
 /* glicemia */
-routes.post('/glicemia', glicemia.create_glicemia)
+routes.post('/glicemia', usuario.checkToken, glicemia.create_glicemia)
 
 /* Aplicação */
-routes.post('/aplicacao', aplicacao.create_aplicacao)
+routes.post('/aplicacao', usuario.checkToken, aplicacao.create_aplicacao)
 
 routes.post('/register', usuario.register)
 routes.post('/login', usuario.login)
