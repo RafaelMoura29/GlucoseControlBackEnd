@@ -63,8 +63,20 @@ module.exports = {
     })
   },
 
-  async recoverPassword(req, res) {
-    const transporter = nodemailer.createTransport({
+  async recoverPassword({body}, res) {
+
+    const user = await Usuario.find({ email: body.email })
+
+    if (user.length <= 0) {
+      return res.status(406).send("O e-mail não está cadastrado")
+    }
+
+    var token = jwt.sign({ 
+      userId: user[0]._id, 
+      url: body.url 
+    }, process.env.KEY);
+
+     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
         user: 'glycon4@gmail.com',
@@ -74,9 +86,9 @@ module.exports = {
 
     const mailOptions = {
       from: 'glycon4@gmail.com',
-      to: req.body.email,
-      subject: 'Testando suporte glycon',
-      text: 'Funcionou!'
+      to: body.email,
+      subject: 'GLYCON - Solucitação de mudança de senha.',
+      text:"Acesse o link a seguir para realizar a mudança de senha: " + body.url + '/'+ token
     }
 
     transporter.sendMail(mailOptions, function (error, info) {
@@ -85,7 +97,8 @@ module.exports = {
       } else {
         return res.status(201).send({ info })
       }
-    })
+    }) 
+    
   }
 
 }
