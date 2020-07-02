@@ -63,7 +63,7 @@ module.exports = {
     })
   },
 
-  async recoverPassword({body}, res) {
+  async recoverPassword({ body }, res) {
 
     const user = await Usuario.find({ email: body.email })
 
@@ -71,12 +71,12 @@ module.exports = {
       return res.status(406).send("O e-mail não está cadastrado")
     }
 
-    var token = jwt.sign({ 
-      userId: user[0]._id, 
-      url: body.url 
+    var token = jwt.sign({
+      userId: user[0]._id,
+      url: body.url
     }, process.env.KEY);
 
-     const transporter = nodemailer.createTransport({
+    const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
         user: 'glycon4@gmail.com',
@@ -88,7 +88,7 @@ module.exports = {
       from: 'glycon4@gmail.com',
       to: body.email,
       subject: 'GLYCON - Solucitação de mudança de senha.',
-      text:"Acesse o link a seguir para realizar a mudança de senha: " + body.url + '/'+ token
+      text: "Acesse o link a seguir para realizar a mudança de senha: " + body.url + '/' + token
     }
 
     transporter.sendMail(mailOptions, function (error, info) {
@@ -97,8 +97,34 @@ module.exports = {
       } else {
         return res.status(201).send({ info })
       }
-    }) 
-    
-  }
+    })
+  },
 
+  async changePassword({ body: { password, confirmPassword }, headers }, res) {
+    const { token } = headers
+
+    if (!token) {
+      return res.status(401).send({ auth: false, message: 'No token provided.' })
+    }
+
+    jwt.verify(token, process.env.KEY, (err,  decoded ) => {
+      if (err) {
+        return res.status(500).send({ auth: false, message: 'Failed to authenticate token.' })
+      }
+      const {userId} = decoded
+      if (password !== confirmPassword) {
+        return res.status(406).send("As senhas não são iguais!")
+      }
+
+      const cyptedPassword = bcrypt.hashSync(password, 8)
+
+      Usuario.findOneAndUpdate({ "_id": userId }, { senha: cyptedPassword })
+        .then((paciente) => {
+          return res.status(200).send()
+        })
+        .catch((error) => {
+          return res.send({ error })
+        })
+    })
+  }
 }

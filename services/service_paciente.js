@@ -12,7 +12,7 @@ module.exports = {
   list_paciente(req, res) {
     Paciente.find(req.query.tagId ? { "_id": req.query.tagId } : {})
       .then((paciente) => {
-        return res.send({ paciente });
+        return res.send({ paciente })
       })
       .catch((error) => {
         return res.send({ error })
@@ -22,7 +22,7 @@ module.exports = {
   update_paciente(req, res) {
     Paciente.findOneAndUpdate({ "_id": req.body._id }, req.body.dataUpdated)
       .then((paciente) => {
-        return res.send({ paciente });
+        return res.send({ paciente })
       })
       .catch((error) => {
         return res.send({ error })

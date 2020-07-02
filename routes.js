@@ -20,6 +20,7 @@ routes.post('/aplicacao', usuario.checkToken, aplicacao.create_aplicacao)
 routes.post('/register', usuario.register)
 routes.post('/login', usuario.login)
 routes.post('/recoverPassword', usuario.recoverPassword)
+routes.post('/changePassword', usuario.changePassword)
 
 routes.get('/', (req, res) => {
     res.sendfile('./views/index.html')
