@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require("mongoose")
 const GlicemiaSchema = require('./Glicemia')
 const AplicacaoSchema = require('./Aplicação')
 
@@ -93,4 +93,4 @@ const PacienteSchema = new mongoose.Schema({
   { collection: 'Paciente' }
 );
 
-mongoose.model("Paciente", PacienteSchema);
+mongoose.model("Paciente", PacienteSchema)

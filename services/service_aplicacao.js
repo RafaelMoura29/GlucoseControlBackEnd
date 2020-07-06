@@ -1,5 +1,5 @@
 const mongoose = require("mongoose")
-const Paciente = mongoose.model("Paciente");
+const Paciente = mongoose.model("Paciente")
 
 module.exports = {
   create_aplicacao(req, res) {
