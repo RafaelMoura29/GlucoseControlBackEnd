@@ -42,12 +42,12 @@ module.exports = {
 
     const user = await Usuario.find({ email })
     if (user.length <= 0) {
-      return res.status(406).send('E-mail e ou senha inválidos')
+      return res.status(400).send('E-mail e ou senha inválidos')
     }
 
     const doesPasswordMatch = await bcrypt.compare(senha, user[0].senha)
     if (!doesPasswordMatch) {
-      return res.status(406).send('E-mail e ou senha inválidos')
+      return res.status(400).send('E-mail e ou senha inválidos')
     }
 
     var token = jwt.sign({ userId: user[0]._id }, process.env.KEY)
