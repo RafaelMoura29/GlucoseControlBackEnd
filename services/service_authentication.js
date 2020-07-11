@@ -110,7 +110,7 @@ module.exports = {
 
     transporter.sendMail(mailOptions, function (error, info) {
       if (error) {
-        return res.status(201).send({ error })
+        return res.status(401).send({ error })
       } else {
         return res.status(201).send({ info })
       }
@@ -142,7 +142,7 @@ module.exports = {
           return res.status(200).send()
         })
         .catch((error) => {
-          return res.send({ error })
+          return res.status(401).send({ error })
         })
     })
   }
