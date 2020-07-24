@@ -32,11 +32,7 @@ const PacienteSchema = new mongoose.Schema(
       type: Number,
       required: true
     },
-    dataInternacao: {
-      type: Date,
-      required: true
-    },
-    horaInternacao: {
+    dataHoraInternacao: {
       type: Date,
       required: true
     },

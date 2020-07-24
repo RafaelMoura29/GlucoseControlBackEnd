@@ -1,9 +1,5 @@
 const AplicacaoSchema = {
-  dataAplicacao: {
-    type: Date,
-    required: true
-  },
-  horaAplicacao: {
+  dataHoraAplicacao: {
     type: Date,
     required: true
   },
@@ -33,6 +29,6 @@ const AplicacaoSchema = {
   },
   updateDate: {
     type: Date,
-    required: true
+    default: Date.now
   }
 }

@@ -1,9 +1,5 @@
 const GlicemiaSchema = {
-  dataColeta: {
-    type: Date,
-    required: true
-  },
-  horaColeta: {
+  dataHoraColeta: {
     type: Date,
     required: true
   },
@@ -29,6 +25,6 @@ const GlicemiaSchema = {
   },
   updateDate: {
     type: Date,
-    default: Date.now,
-  }
+    default: Date.now
+  },
 }
