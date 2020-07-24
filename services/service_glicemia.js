@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Paciente = mongoose.model("Paciente");
 
 module.exports = {
-  create_glicemia(req, res) {
+  salvarGlicemia(req, res) {
     const { _idPaciente, ...glicemia } = req.body
     Paciente.findOne({ _id: String(_idPaciente) })
       .then((paciente) => {

@@ -1,16 +1,17 @@
-const mongoose = require("mongoose");
-const Paciente = mongoose.model("Paciente");
+const mongoose = require('mongoose')
+const Paciente = mongoose.model('Paciente')
 
 module.exports = {
-  create_paciente(req, res) {
+  salvarPaciente(req, res) {
     let novoPaciente = new Paciente(req.body)
-    novoPaciente.save()
+    novoPaciente
+      .save()
       .then((paciente) => res.send(paciente))
-      .catch((error) => res.send({error}))
+      .catch((error) => res.send({ error }))
   },
 
-  list_paciente(req, res) {
-    Paciente.find(req.query.tagId ? { "_id": req.query.tagId } : {})
+  listarPacientes(req, res) {
+    Paciente.find(req.query.tagId ? { _id: req.query.tagId } : {})
       .then((paciente) => {
         return res.send({ paciente })
       })
@@ -19,8 +20,8 @@ module.exports = {
       })
   },
 
-  update_paciente(req, res) {
-    Paciente.findOneAndUpdate({ "_id": req.body._id }, req.body.dataUpdated)
+  atualizarPaciente(req, res) {
+    Paciente.findOneAndUpdate({ _id: req.body._id }, req.body.dataUpdated)
       .then((paciente) => {
         return res.send({ paciente })
       })

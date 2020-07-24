@@ -1,10 +1,10 @@
 const AplicacaoSchema = {
   dataAplicacao: {
-    type: String,
+    type: Date,
     required: true
   },
   horaAplicacao: {
-    type: String,
+    type: Date,
     required: true
   },
   tipoAplicacao: {
@@ -20,7 +20,7 @@ const AplicacaoSchema = {
     required: true
   },
   posologia: {
-    type: String,
+    type: Number,
     required: true
   },
   observacoes: {
@@ -28,11 +28,11 @@ const AplicacaoSchema = {
     required: false
   },
   createDate: {
-    type: String,
+    type: Date,
     required: true
   },
   updateDate: {
-    type: String,
+    type: Date,
     required: true
   }
 }

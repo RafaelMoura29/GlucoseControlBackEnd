@@ -1,10 +1,10 @@
 const GlicemiaSchema = {
   dataColeta: {
-    type: String,
+    type: Date,
     required: true
   },
   horaColeta: {
-    type: String,
+    type: Date,
     required: true
   },
   tipoColeta: {
@@ -16,7 +16,7 @@ const GlicemiaSchema = {
     required: true
   },
   valorGlicemia: {
-    type: String,
+    type: Number,
     required: true
   },
   observacoes: {
@@ -24,11 +24,11 @@ const GlicemiaSchema = {
     required: false
   },
   createDate: {
-    type: String,
+    type: Date,
     required: true
   },
   updateDate: {
-    type: String,
-    required: true
+    type: Date,
+    default: Date.now,
   }
 }
