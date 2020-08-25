@@ -7,6 +7,7 @@ module.exports = {
     Paciente.findOne({ _id: String(_idPaciente)})
       .then((paciente) => {
         paciente.aplicacao.push(aplicacao)
+        paciente.markModified('anything')
         paciente.save()
           .then((response) => res.send(response.aplicacao))
           .catch((error) => res.send(error))
