@@ -8,9 +8,9 @@ module.exports = {
       .then((paciente) => {
         paciente.glicemia.push(glicemia)
         paciente.save()
-          .then((response) => res.send(response.glicemia))
-          .catch((error) => res.send(error))
+          .then((response) => res.status(200).send(response.glicemia))
+          .catch((error) => res.status(400).send(error))
       })
-      .catch((error) => res.send(error))
+      .catch((error) => res.status(400).send(error))
   },
 }

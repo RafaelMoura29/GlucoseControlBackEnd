@@ -9,9 +9,9 @@ module.exports = {
         paciente.aplicacao.push(aplicacao)
         paciente.markModified('anything')
         paciente.save()
-          .then((response) => res.send(response.aplicacao))
-          .catch((error) => res.send(error))
+          .then((response) => res.status(200).send(response.aplicacao))
+          .catch((error) => res.status(400).send(error))
       })
-      .catch((error) => res.send(error))
+      .catch((error) => res.status(400).send(error))
   },
 }
