@@ -52,7 +52,7 @@ module.exports = {
 
     var token = jwt.sign({ userId: user[0]._id }, process.env.KEY)
 
-    return res.status(201).send({ isUserAuthenticated: true, token })
+    return res.status(200).send({ isUserAuthenticated: true, token })
   },
 
   async checkToken(req, res, next) {
@@ -67,7 +67,7 @@ module.exports = {
     jwt.verify(token, process.env.KEY, (err, decoded) => {
       if (err) {
         return res
-          .status(500)
+          .status(401)
           .send({ auth: false, message: 'Failed to authenticate token.' })
       }
       next()
@@ -110,9 +110,9 @@ module.exports = {
 
     transporter.sendMail(mailOptions, function (error, info) {
       if (error) {
-        return res.status(401).send({ error })
+        return res.status(400).send({ error })
       } else {
-        return res.status(201).send({ info })
+        return res.status(200).send({ info })
       }
     })
   },
@@ -127,7 +127,7 @@ module.exports = {
     jwt.verify(token, process.env.KEY, (err, decoded) => {
       if (err) {
         return res
-          .status(500)
+          .status(400)
           .send({ auth: false, message: 'Failed to authenticate token.' })
       }
       const { userId } = decoded
