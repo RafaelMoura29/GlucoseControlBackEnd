@@ -4,7 +4,7 @@ const AplicacaoSchema = require('./Aplicação')
 
 const PacienteSchema = new mongoose.Schema(
   {
-    prontuario: {
+    prontuario: { 
       type: String,
       required: true
     },

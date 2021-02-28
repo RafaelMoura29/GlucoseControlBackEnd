@@ -1,4 +1,4 @@
-const GlicemiaSchema = {
+const GlicemiaSchema = { 
   dataHoraColeta: {
     type: Date,
     required: true

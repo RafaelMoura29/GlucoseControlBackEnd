@@ -92,8 +92,8 @@ module.exports = {
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: 'glycon4@gmail.com',
-        pass: 'glyconEmail123'
+        user: '',
+        pass: ''
       }
     })
 

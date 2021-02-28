@@ -1,4 +1,4 @@
-const AplicacaoSchema = {
+const AplicacaoSchema = { 
   dataHoraAplicacao: {
     type: Date,
     required: true
