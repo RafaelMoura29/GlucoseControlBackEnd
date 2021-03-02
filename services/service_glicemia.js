@@ -7,6 +7,7 @@ module.exports = {
     Paciente.findOne({ _id: String(_idPaciente) })
       .then((paciente) => {
         paciente.glicemia.push(glicemia)
+        paciente.updateDate = glicemia.createDate
         paciente.save()
           .then((response) => res.status(200).send(response.glicemia))
           .catch((error) => res.status(400).send(error))
