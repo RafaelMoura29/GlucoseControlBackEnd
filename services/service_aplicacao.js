@@ -7,7 +7,7 @@ module.exports = {
     Paciente.findOne({ _id: String(_idPaciente)})
       .then((paciente) => {
         paciente.aplicacao.push(aplicacao)
-        paciente.updateDate = aplicacao.createDate
+        paciente.updateDate = new Date().toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' })
         paciente.markModified('anything')
         paciente.save()
           .then((response) => res.status(200).send(response.aplicacao))
