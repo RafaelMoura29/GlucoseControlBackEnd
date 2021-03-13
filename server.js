@@ -12,14 +12,14 @@ app.use(cors())
 
 // Iniciando o DB
 mongoose.connect(process.env.ULR_MONGO, {
-  useNewUrlParser: true, 
-  useUnifiedTopology: true
-})
-  .catch((error) => {
-    console.log(error)
-  })
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+    })
+    .catch((error) => {
+        console.log(error)
+    })
 
 requireDir("./models")
-app.use( require("./routes"))
+app.use(require("./routes"))
 
 app.listen(process.env.PORT || 8080)

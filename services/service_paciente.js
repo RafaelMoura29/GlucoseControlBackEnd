@@ -4,7 +4,8 @@ const Paciente = mongoose.model('Paciente')
 module.exports = {
   salvarPaciente(req, res) {
     let novoPaciente = new Paciente(req.body)
-    novoPaciente.updateDate = new Date().toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' })
+    novoPaciente.updateDate = new Date()
+    novoPaciente.updateDate.setHours(novoPaciente.updateDate.getHours() - 3);
     novoPaciente
       .save()
       .then((paciente) => res.status(201).send(paciente))
@@ -22,7 +23,8 @@ module.exports = {
   },
 
   atualizarPaciente(req, res) {
-    req.body.dataUpdated.updateDate = new Date().toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' })
+    req.body.dataUpdated.updateDate = new Date()
+    req.body.dataUpdated.updateDate.setHours(req.body.dataUpdated.updateDate.getHours() - 3);
     Paciente.findOneAndUpdate({ _id: req.body._id }, req.body.dataUpdated)
       .then((paciente) => {
         return res.status(200).send({ paciente })
