@@ -1,8 +1,0 @@
-{
-  "compilerOptions": {
-    "outDir": "./node_modules",
-    "allowJs": true,
-    "target": "es5"
-  },
-  "include": ["./models/**/*", "./services/**/*", "./views/**/*"]
-}
