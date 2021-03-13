@@ -4,7 +4,7 @@ const Paciente = mongoose.model('Paciente')
 module.exports = {
   salvarPaciente(req, res) {
     let novoPaciente = new Paciente(req.body)
-    novoPaciente.updateDate = new Date().toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' })
+    novoPaciente.updateDate = new Date()
     novoPaciente
       .save()
       .then((paciente) => res.status(201).send(paciente))
