@@ -4,7 +4,7 @@ const routes = express.Router()
 const paciente = require('./services/service_paciente')
 const glicemia = require('./services/service_glicemia')
 const aplicacao = require('./services/service_aplicacao')
-const usuario = require('./services/service_authentication.ts')
+const usuario = require('./services/service_authentication')
 
 /* Paciente  */
 routes.post('/paciente', usuario.checkToken, paciente.salvarPaciente)
