@@ -7,8 +7,8 @@ module.exports = {
         Paciente.findOne({ _id: String(_idPaciente) })
             .then((paciente) => {
                 paciente.glicemia.push(glicemia)
-                paciente.updateDate = new Date()
-                paciente.updateDate.setHours(paciente.updateDate.getHours() - 3);
+                paciente.updateDate = new Date().toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' })
+                //paciente.updateDate.setHours(paciente.updateDate.getHours() - 3);
 
                 paciente.diabetes = diabetes
                 paciente.save()
